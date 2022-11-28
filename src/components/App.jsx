@@ -12,18 +12,40 @@ import { Section } from './Section/Section';
 export class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
   };
 
+  componentDidMount() {
+    console.log('App componentDidMount');
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    console.log(parsedContacts);
+    if (parsedContacts) {
+      this.setState({
+        contacts: parsedContacts,
+      });
+    }
+  }
+
+  //! НУ делаем Публичным св-вом -(стрелочной ФУ!)
+  //* Делать только методом Класса !
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Обновилось поле Contacts');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = data => {
     const newContact = {
-      ...data,
       id: nanoid(),
+      ...data,
     };
     const isNameExist = this.state.contacts.find(({ name, number }) => {
       // name.toLowerCase() === newContact.name.toLowerCase();
@@ -63,7 +85,9 @@ export class App extends Component {
     const { filter, contacts } = this.state;
     return filter ? this.getFilteredContacts() : contacts;
   };
+
   render() {
+    console.log('Render component');
     const { filter } = this.state;
 
     // const options = filter ? this.getFilteredContacts() : contacts;
