@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Label, Input, Button } from './ContactForm.styled';
+// import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
 export class ContactForm extends Component {
@@ -27,6 +28,56 @@ export class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
+      // <Formik
+      //   initialValues={{ name: '', number: '' }}
+      //   validate={values => {
+      //     const errors = {};
+      //     if (!values.name) {
+      //       return (errors.name = 'Required');
+      //     }
+      //   }}
+      //   onSubmit={(values, { setSubmitting }) => {
+      //     console.log(values);
+      //     setTimeout(() => {
+      //       alert(JSON.stringify(values, null, 2));
+      //       setSubmitting(false);
+      //     }, 400);
+      //   }}
+      // >
+      //   {({
+      //     values,
+      //     errors,
+      //     touched,
+      //     handleChange,
+      //     handleBlur,
+      //     handleSubmit,
+      //     isSubmitting,
+      //     /* and other goodies */
+      //   }) => (
+      //     <form onSubmit={handleSubmit}>
+      //       <input
+      //         type="text"
+      //         name="name"
+      //         onChange={handleChange}
+      //         onBlur={handleBlur}
+      //         value={values.name}
+      //       />
+      //       {errors.name && touched.name && errors.name}
+      //       <input
+      //         type="tel"
+      //         name="number"
+      //         onChange={handleChange}
+      //         onBlur={handleBlur}
+      //         value={values.number}
+      //       />
+      //       {errors.number && touched.number && errors.number}
+      //       <button type="submit" disabled={isSubmitting}>
+      //         Submit
+      //       </button>
+      //     </form>
+      //   )}
+      // </Formik>
+
       <Form onSubmit={this.handleSubmit}>
         <Label>
           Name
