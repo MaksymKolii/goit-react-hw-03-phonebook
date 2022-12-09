@@ -56,4 +56,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-//! НУ делаем Публичным св-вом -(стрелочной ФУ!)
+//! Нe делаем Публичным св-вом -(стрелочной ФУ!)
