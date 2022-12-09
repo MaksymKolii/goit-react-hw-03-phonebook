@@ -30,7 +30,7 @@ export class App extends Component {
     }
   }
 
-  //! НУ делаем Публичным св-вом -(стрелочной ФУ!)
+  //! Нe делаем Публичным св-вом -(стрелочной ФУ!)
   //* Делать только методом Класса !
   componentDidUpdate(_, prevState) {
     console.log('App componentDidUpdate');
@@ -41,10 +41,12 @@ export class App extends Component {
     }
   }
 
-  addContact = data => {
+  addContact = ({ name, number }) => {
     const newContact = {
       id: nanoid(),
-      ...data,
+      name,
+      number,
+      // ...data,
     };
     const isNameExist = this.state.contacts.find(({ name, number }) => {
       // name.toLowerCase() === newContact.name.toLowerCase();
@@ -60,6 +62,7 @@ export class App extends Component {
           contacts: [newContact, ...prevState.contacts],
         }));
   };
+
   deleteContact = iD => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== iD),
